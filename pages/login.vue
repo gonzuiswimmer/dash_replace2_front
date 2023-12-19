@@ -1,23 +1,19 @@
 <template>
-  <div class="container">
-    <h1 class="h1 pb-1 border-bottom border-dark">Login</h1>
-    <p>ログイン状態: {{ $auth.loggedIn }}</p>
-    <p>ログインユーザー: {{ $auth.user }}</p>
-    <div class="row justify-content-md-center">
-      <div class="col-6">
-        <form name="login" @submit.prevent="login()">
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" placeholder="Enter email" v-model="form.email" required />
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Enter password" v-model="form.password" required />
-          </div>
-          <button type="submit" class="btn btn-success">Submit</button>
-        </form>
-      </div>
-    </div>
+  <div>
+    <v-card width="400px" class="mx-auto mt-5">
+      <v-card-title>
+        <h1 class="display-1">ログイン</h1>
+      </v-card-title>
+      <v-card-text>
+        <v-form @submit.prevent="login()">
+          <v-text-field prepend-icon="mdi-account-circle" label="ユーザー名" type="email" v-model="form.email" />
+          <v-text-field prepend-icon="mdi-lock" v-bind:append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'" label="パスワード" v-bind:type="showPassword ? 'text' : 'password'" @click:append="showPassword = !showPassword" v-model="form.password" />
+          <v-card-actions>
+            <v-btn type="submit" class="info">ログイン</v-btn>
+          </v-card-actions>
+        </v-form>
+      </v-card-text>
+    </v-card>
   </div>
 </template>
 
@@ -25,6 +21,7 @@
   export default {
     data() {
       return {
+        showPassword: false,
         form: {
           email: '',
           password: ''
@@ -40,7 +37,7 @@
       async login() {
         try {
           const response = await this.$auth.loginWith('local', { data: this.form });
-          // this.$auth.setUser(response.data[0]);
+          this.$auth.setUser(response.data[0]);
           await this.$auth.fetchUser();
           console.log(response);
         } catch(error) {
