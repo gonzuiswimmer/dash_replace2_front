@@ -36,7 +36,7 @@
     methods: {
       async login() {
         try {
-          const response = await this.$auth.loginWith('local', { data: this.form });
+          const response = await this.$auth.loginWith('laravelSanctum', { data: this.form });
           this.$auth.setUser(response.data[0]);
           await this.$auth.fetchUser();
           console.log(response);

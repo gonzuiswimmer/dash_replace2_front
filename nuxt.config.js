@@ -41,7 +41,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/auth',
+    '@nuxtjs/auth-next',
   ],
 
   auth: {
@@ -52,7 +52,8 @@ export default {
       home: '/'
     },
     strategies: {
-      local: {
+      laravelSanctum: {
+        provider: 'laravel/sanctum',
         url: 'http://localhost',
         endpoints: {
           login: {url: '/api/auth/login', method: 'post', propertyName: 'token' },
