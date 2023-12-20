@@ -34,7 +34,7 @@
       <v-list v-if="this.$auth.loggedIn">
         <v-list-item>
           <v-list-item-action>
-            <v-icon icon="mdi-close"></v-icon>
+            <v-icon>mdi-logout</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title><v-btn @click="logout()" role="button">Logout</v-btn></v-list-item-title>
@@ -54,40 +54,83 @@ export default {
       items: [
         {
           icon: 'mdi-apps',
-          title: 'Welcome',
+          title: 'Top',
           to: '/',
         },
         {
           icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire',
+          title: '月報トップ',
+          to: '/',
+        },
+        {
+          icon: 'mdi-pencil',
+          title: '月報編集',
+          to: '/',
         },
         {
           icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire',
+          title: 'マイ月報',
+          to: '/',
         },
         {
           icon: 'mdi-chart-bubble',
-          title: 'Inspire',
+          title: 'ブログトップ',
+          to: '/',
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'ブログ新規投稿',
+          to: '/',
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'マイブログ',
+          to: '/',
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'お気に入りブログ',
+          to: '/',
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'QAトップ',
+          to: '/',
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: '質問投稿',
+          to: '/',
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'マイ質問',
+          to: '/',
+        },
+        {
+          icon: 'mdi-magnify',
+          title: 'ユーザー検索',
+          to: '/',
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'プロフィール',
+          to: '/inspire',
+        },
+        {
+          icon: 'mdi-lock',
+          title: 'パスワード変更',
+          to: '/inspire',
+        },
+        {
+          icon: 'mdi-chat-question',
+          title: 'お問い合わせ',
           to: '/inspire',
         },
       ],
       title: 'B-Dash',
     }
   },
-  // methods: {
-  //     async login() {
-  //       try {
-  //         const response = await this.$auth.loginWith('laravelSanctum', { data: this.form });
-  //         this.$auth.setUser(response.data[0]);
-  //         await this.$auth.fetchUser();
-  //         console.log(response);
-  //       } catch(error) {
-  //         console.log(error);
-  //       }
-  //     },
-  //   },
   methods: {
     async logout() {
       try{
