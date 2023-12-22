@@ -135,11 +135,15 @@ export default {
     async logout() {
       try{
         const response = await this.$auth.logout();
+        await this.resetUserRole();
         console.log(response);
       }catch(error){
         console.log(error);
       }
-    }
+    },
+    resetUserRole(){
+      this.$store.commit('role/resetUserRole')
+    },
   }
 }
 </script>

@@ -37,12 +37,14 @@
       async login() {
         try {
           const response = await this.$auth.loginWith('laravelSanctum', { data: this.form });
-          this.$auth.setUser(response.data[0]);
-          await this.$auth.fetchUser();
+          await this.setUserRole(response.data['role']);
           console.log(response);
         } catch(error) {
           console.log(error);
         }
+      },
+      setUserRole(role){
+        this.$store.commit('role/setUserRole',role)
       },
     },
   };
