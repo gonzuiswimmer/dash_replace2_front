@@ -24,7 +24,9 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [
+    {src: '~/plugins/persistedState.js', ssr: false}
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -47,7 +49,7 @@ export default {
   auth: {
     redirect: {
       login: '/login',
-      logout: '/',
+      logout: '/login',
       callback: false,
       home: '/'
     },
@@ -68,7 +70,7 @@ export default {
   },
 
   router: {
-    middleware: ['auth']
+    middleware: ['auth', 'judgeAdmin']
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
