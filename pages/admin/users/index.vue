@@ -24,7 +24,7 @@
             <v-col cols="8">
               <div>
                 入社日
-                <date-picker v-model="searchForm.hireMonth" type="month" lang="ja" format="YYYY-MM-DD" />
+                <date-picker v-model="searchForm.hireMonth" type="month" lang="ja" format="YYYY-MM" />
               </div>
             </v-col>
 
