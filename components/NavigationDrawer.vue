@@ -14,9 +14,28 @@
         fixed
         app
     >
-      <v-list>
+      <!-- 管理者ユーザーのメニュー -->
+      <v-list v-if="judgeAdmin">
         <v-list-item
-          v-for="(item, i) in items"
+          v-for="(item, i) in adminItems"
+          :key="i"
+          :to="item.to"
+          router
+          exact
+        >
+          <v-list-item-action>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+
+      <!-- 一般ユーザーのメニュー -->
+      <v-list v-if="!judgeAdmin">
+        <v-list-item
+          v-for="(item, i) in userItems"
           :key="i"
           :to="item.to"
           router
@@ -51,7 +70,84 @@ export default {
     return {
       drawer: false,
       fixed: false,
-      items: [
+      adminItems: [
+        {
+          icon: 'mdi-apps',
+          title: 'Top',
+          to: '/',
+        },
+        {
+          icon: 'mdi-magnify',
+          title: 'ユーザー検索',
+          to: '/admin/users',
+        },
+        {
+          icon: 'mdi-pencil',
+          title: 'ユーザー登録',
+          to: '/admin/users/create',
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'マイ月報',
+          to: '/',
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'ブログトップ',
+          to: '/',
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'ブログ新規投稿',
+          to: '/',
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'マイブログ',
+          to: '/',
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'お気に入りブログ',
+          to: '/',
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'QAトップ',
+          to: '/',
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: '質問投稿',
+          to: '/',
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'マイ質問',
+          to: '/',
+        },
+        {
+          icon: 'mdi-magnify',
+          title: 'ユーザー検索',
+          to: '/',
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'プロフィール',
+          to: '/inspire',
+        },
+        {
+          icon: 'mdi-lock',
+          title: 'パスワード変更',
+          to: '/inspire',
+        },
+        {
+          icon: 'mdi-chat-question',
+          title: 'お問い合わせ',
+          to: '/inspire',
+        },
+      ],
+      userItems: [
         {
           icon: 'mdi-apps',
           title: 'Top',
@@ -131,6 +227,11 @@ export default {
       title: 'B-Dash',
     }
   },
+  computed: {
+      judgeAdmin(){
+        return this.$store.getters['role/judgeAdmin']
+      }
+    },
   methods: {
     async logout() {
       try{
