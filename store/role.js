@@ -3,9 +3,9 @@ export const state = () => ({
 })
 
 export const getters = {
-  // getCounter(state) {
-  //   return state.counter
-  // }
+  judgeAdmin(state) {
+    return state.role === 'admin'
+  }
 }
 
 export const mutations = {
