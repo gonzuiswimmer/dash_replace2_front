@@ -5,7 +5,11 @@ export const state = () => ({
 export const getters = {
   getDepartments(state) {
     return state.departments
-  }
+  },
+  forSelectList(state, getters) {
+    const array = [{'name': '---', 'id': null}]
+    return array.concat(getters.getDepartments)
+  },
 }
 
 export const mutations = {
