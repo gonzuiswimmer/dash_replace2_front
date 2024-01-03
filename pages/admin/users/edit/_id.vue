@@ -104,10 +104,53 @@
           </v-row>
           <v-btn
           type="submit"
+          color="primary"
           class="me-4"
           >
           保存
           </v-btn>
+
+          <!-- 削除ダイアログ -->
+          <v-dialog
+            v-model="dialog"
+            persistent
+            width="auto"
+          >
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+              color="red"
+              class="me-4 white--text"
+              v-bind="attrs"
+              v-on="on"
+              >
+              退職
+              </v-btn>
+            </template>
+
+            <v-card>
+              <v-card-title class="text-h5">
+                確認
+              </v-card-title>
+              <v-card-text>ユーザーのステータスを”退職”にしますか？</v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn
+                  color="green darken-1"
+                  text
+                  @click="dialog = false"
+                >
+                  キャンセル
+                </v-btn>
+                <v-btn
+                  color="green darken-1"
+                  text
+                  @click="destroyUser()"
+                >
+                  削除する
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
         </v-form>
       </v-card-text>
     </v-card>
@@ -172,6 +215,7 @@
           max255: v => v.length <= 255 || '255文字以下で入力してください',
           email: v => /.+@.+/.test(v) || 'メールアドレス形式で入力してください',
         },
+        dialog: false,
       }
     },
     mounted(){
@@ -195,8 +239,27 @@
               this.$router.push(`/admin/users/edit/${this.updateUserForm.id}`);
             }
           })
-          console.log(response);
+          // console.log(response);
         } catch(error) {
+          console.log(error);
+          alert(error.response.data.message);
+        }
+      },
+      async destroyUser(){
+        try {
+          console.log('動作確認');
+          await this.$axios.patch(`/api/admin/users/destroy/${this.$route.params['id']}`)
+          .then((response) => {
+            if(response.data.DestroyUserResult){
+              alert('ユーザー情報を削除しました');
+              this.dialog = false;
+              this.$router.push('/admin/users/');
+            } else {
+              alert('削除に失敗しました');
+              this.$router.push(`/admin/users/edit/${this.updateUserForm.id}`);
+            }
+          })
+        } catch (error) {
           console.log(error);
           alert(error.response.data.message);
         }
