@@ -132,6 +132,11 @@ export default {
           to: '/',
         },
         {
+          icon: 'mdi-account',
+          title: this.$auth.user.name,
+          to: '/',
+        },
+        {
           icon: 'mdi-chart-bubble',
           title: 'プロフィール',
           to: '/inspire',
@@ -206,6 +211,11 @@ export default {
         {
           icon: 'mdi-magnify',
           title: 'ユーザー検索',
+          to: '/',
+        },
+        {
+          icon: 'mdi-account',
+          title: this.$auth.user.name,
           to: '/',
         },
         {
