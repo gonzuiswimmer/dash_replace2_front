@@ -31,7 +31,7 @@
             <v-col cols="8">
               <v-select
                 v-model="searchForm.department"
-                :items="getDepartments"
+                :items="forSelectList"
                 item-text="name"
                 item-value="id"
                 label="所属"
@@ -54,10 +54,10 @@
     <!-- ユーザー一覧 -->
     <v-card width="800px" class="mx-auto mt-5">
       <v-card-title>
-        <h2 class="display-8">ユーザー一覧</h2>
+        <h2 class="display-8">管理者トップ・ユーザー一覧/検索</h2>
       </v-card-title>
       <v-card-text v-if="users !== null">
-        <v-list-item v-for="user in users" :key="user.id">
+        <v-list-item v-for="user in users" :key="user.id" :to="{ name: 'admin-users-edit-id', params: {id: user.id}}">
           <v-list-item-content>
             <v-list-item-title>{{ user.name }}</v-list-item-title>
             <v-list-item-subtitle>{{ user.entry_date }} <span>【{{ user.department.name }}】</span> </v-list-item-subtitle>
@@ -102,15 +102,9 @@
         lastPage: null, // 最終ページ
       }
     },
-    mounted(){
-      this.$axios.get('/api/admin/users/getDepartments')
-      .then((res) => {
-        this.$store.commit('department/setDepartments',res.data[0])
-      })
-    },
     computed: {
-      getDepartments(){
-        return this.$store.getters['department/getDepartments']
+      forSelectList(){
+        return this.$store.getters['department/forSelectList']
       }
     },
     methods: {

@@ -63,7 +63,7 @@
             <v-col cols="8">
               <v-select
                 v-model="registerUserForm.department_id"
-                :items="getDepartments"
+                :items="forSelectList"
                 item-text="name"
                 item-value="id"
                 label="所属"
@@ -132,14 +132,11 @@
       }
     },
     mounted(){
-      this.$axios.get('/api/admin/users/getDepartments')
-      .then((res) => {
-        this.$store.commit('department/setDepartments',res.data[0])
-      })
+
     },
     computed: {
-      getDepartments(){
-        return this.$store.getters['department/getDepartments']
+      forSelectList(){
+        return this.$store.getters['department/forSelectList']
       }
     },
     methods: {
