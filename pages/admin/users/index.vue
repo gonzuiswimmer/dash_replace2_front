@@ -102,12 +102,6 @@
         lastPage: null, // 最終ページ
       }
     },
-    mounted(){
-      this.$axios.get('/api/admin/users/getDepartments')
-      .then((res) => {
-        this.$store.commit('department/setDepartments',res.data[0])
-      })
-    },
     computed: {
       forSelectList(){
         return this.$store.getters['department/forSelectList']

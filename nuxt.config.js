@@ -70,7 +70,7 @@ export default {
   },
 
   router: {
-    middleware: ['auth', 'judgeAdmin']
+    middleware: ['auth', 'judgeAdmin', 'getDepartments']
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

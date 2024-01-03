@@ -22,10 +22,10 @@ export const mutations = {
 }
 
 export const actions = {
-  // async fetchCounter({ state }) {
-  //   // make request
-  //   const res = { data: 10 };
-  //   state.counter = res.data;
-  //   return res.data;
-  // }
+  async fetchDepartments({ commit }) {
+    await this.$axios.get('/api/admin/users/getDepartments')
+    .then((res) => {
+      commit('setDepartments',res.data[0])
+    })
+  }
 }
