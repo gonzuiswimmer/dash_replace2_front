@@ -11,7 +11,7 @@
             </v-list-item-avatar>
 
             <v-list-item-content>
-              <v-list-item-title>{{ content.user.name }}<span>【所属:{{content.user.department_id}}/{{content.user.entry_date}}入社】</span> </v-list-item-title>
+              <v-list-item-title>{{ content.user.name }}<span>【所属:{{getDepartmentName(content.user.department_id)}}/{{content.user.entry_date}}入社】</span> </v-list-item-title>
 
               <v-list-item-subtitle>
                 {{ content.business_content }}
@@ -43,7 +43,7 @@
       </v-list>
     </v-card>
     <div class="d-flex flex-row justify-end mt-2">
-      <v-btn to="/">{{ reportsOfFollowingUser.contentTitle }}一覧はこちら</v-btn>
+      <v-btn text color="primary" to="index" >{{ reportsOfFollowingUser.contentTitle }}一覧はこちら</v-btn>
     </div>
   </v-col>
 </template>
@@ -54,6 +54,27 @@ export default {
     reportsOfFollowingUser: {
       type: Object,
       default: {},
+    }
+  },
+  methods: {
+    getDepartmentName(id) {
+      if (id === 1) {
+        return 'WEB'
+      } else if (id === 2) {
+        return 'CL'
+      } else if (id === 3) {
+        return 'ML'
+      } else if (id === 4) {
+        return '内勤'
+      } else if (id === 5) {
+        return '未設定'
+      } else if (id === 6) {
+        return 'FR'
+      } else if (id === 7) {
+        return 'QA'
+      } else if (id === 8) {
+        return 'PHP'
+      }
     }
   }
 }
