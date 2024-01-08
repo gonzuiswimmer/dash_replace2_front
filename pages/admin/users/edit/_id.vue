@@ -247,7 +247,6 @@
       },
       async destroyUser(){
         try {
-          console.log('動作確認');
           await this.$axios.patch(`/api/admin/users/destroy/${this.$route.params['id']}`)
           .then((response) => {
             if(response.data.DestroyUserResult){

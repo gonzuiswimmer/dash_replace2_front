@@ -133,7 +133,7 @@ export default {
         },
         {
           icon: 'mdi-account',
-          title: this.$auth.user.name,
+          title: this.$auth.user ? this.$auth.user.name : '',
           to: '/',
         },
         {
@@ -215,7 +215,7 @@ export default {
         },
         {
           icon: 'mdi-account',
-          title: this.$auth.user.name,
+          title: this.$auth.user ? this.$auth.user.name : '',
           to: '/',
         },
         {
