@@ -33,7 +33,7 @@ export default {
       users: [],
     }
   },
-  mounted(){
+  created(){
     this.fetchAdminUsers();
   },
   methods: {

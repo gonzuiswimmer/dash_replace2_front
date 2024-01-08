@@ -87,14 +87,14 @@ export default {
           to: '/admin/users/create',
         },
         {
-          icon: 'mdi-chart-bubble',
-          title: 'マイ月報',
-          to: '/',
+          icon: 'mdi-account-tie',
+          title: '管理者一覧',
+          to: '/admin/users/showRoles',
         },
         {
-          icon: 'mdi-chart-bubble',
-          title: 'ブログトップ',
-          to: '/',
+          icon: 'mdi-account-plus',
+          title: '管理者登録',
+          to: '/admin/users/registerAdminRole',
         },
         {
           icon: 'mdi-chart-bubble',
