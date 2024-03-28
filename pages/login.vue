@@ -10,6 +10,7 @@
           <v-text-field prepend-icon="mdi-lock" v-bind:append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'" label="パスワード" v-bind:type="showPassword ? 'text' : 'password'" @click:append="showPassword = !showPassword" v-model="form.password" />
           <v-card-actions>
             <v-btn type="submit" class="info">ログイン</v-btn>
+            <v-btn class="ml-auto" text color="primary" to="forgotPassword">パスワードをお忘れの方はこちら</v-btn>
           </v-card-actions>
         </v-form>
       </v-card-text>

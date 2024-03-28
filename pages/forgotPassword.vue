@@ -1,9 +1,9 @@
 <template>
   <div>
-    <v-card width="400px" class="mx-auto mt-5">
+    <v-card width="700px" class="mx-auto mt-5">
       <v-card-title>
         <h1 class="display-1">パスワードをお忘れですか？</h1>
-        <h2>メールアドレスを入力してください。新しいパスワードを選択できるパスワードリセットリンクをメールアドレスでお送りします。</h2>
+        <p>メールアドレスを入力してください。新しいパスワードを選択できるパスワードリセットリンクをメールアドレスでお送りします。</p>
       </v-card-title>
       <v-card-text>
         <v-form @submit.prevent="resendVerifyEmail()">
