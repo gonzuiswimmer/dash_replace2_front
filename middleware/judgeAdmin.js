@@ -4,6 +4,6 @@ export default function ({ store, redirect, route }) {
   if (store.state.role.role != 'admin' && route.path.indexOf('admin') > -1 ){
     console.log(route.path.indexOf('admin'));
     alert('アクセスする権限がありません');
-    redirect('/login');
+    redirect('/');
   }
 }
