@@ -23,7 +23,7 @@ export const mutations = {
 
 export const actions = {
   async fetchDepartments({ commit }) {
-    await this.$axios.get('/api/admin/users/getDepartments')
+    await this.$axios.get('/api/getDepartments')
     .then((res) => {
       commit('setDepartments',res.data[0])
     })
