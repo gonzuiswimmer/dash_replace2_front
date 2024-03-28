@@ -43,12 +43,14 @@
         try {
           const response = await this.$axios.post('/reset-password', this.form)
           .then((response) => {
-            alert('パスワードを再設定しました');
-            console.log(response);
-            this.$router.push('/login');
+            if(response.data[0] == 'passwords.reset'){
+              alert('パスワードを再設定しました。');
+              this.$router.push('/login');
+            }else{
+              alert(response.data.email);
+            }
           });
         } catch(error) {
-          console.log(error);
           alert(error.response.data.message);
         }
       },

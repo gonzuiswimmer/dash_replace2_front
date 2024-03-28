@@ -37,11 +37,13 @@
         try {
           const response = await this.$axios.post('/forgot-password', this.form)
           .then((response) => {
-            alert('パスワードリセットメールを送信しました。');
-            this.$router.push('/passwordReset');
+            if(response.data[0] == 'passwords.sent'){
+              alert('パスワードリセットメールを送信しました。メールを確認してパスワードリセットリンクをクリックしてください');
+            }else{
+              alert(response.data.email);
+            }
           });
         } catch(error) {
-          console.log(error);
           alert(error.response.data.message);
         }
       },
